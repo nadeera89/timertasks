@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addingTask } from "./reducers/reducers";
 
@@ -9,6 +9,12 @@ const TaskCreator = () => {
 
   const state = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      if (ref.current) clearInterval(ref.current);
+    };
+  }, []);
 
   const startTimer = () => {
     if (ref.current) clearInterval(ref.current);
