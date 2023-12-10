@@ -5,7 +5,7 @@ import { addingTask } from "./reducers/reducers";
 const TaskCreator = () => {
   const [timer, setTimer] = useState(0);
   const [taskName, setTaskName] = useState("");
-  const ref = useRef(0);
+  const ref = useRef(null);
 
   const state = useSelector((state) => state.tasks);
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const TaskCreator = () => {
   };
 
   const stopTimer = () => {
-    if (timer !== 0) {
+    if (timer) {
       dispatch(
         addingTask({
           ID: state.length + 1,
@@ -32,6 +32,7 @@ const TaskCreator = () => {
     if (ref.current) clearInterval(ref.current);
 
     setTimer(0);
+    setTaskName("");
   };
 
   const pauseTimer = () => {

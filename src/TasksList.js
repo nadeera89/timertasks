@@ -37,10 +37,10 @@ const TasksList = () => {
         {taskGroup &&
           taskGroup.reverse().map((el) => {
             return (
-              <li key={el.ID} class="task">
-                <span class="id">{el.ID}, </span>
-                <span class="name">{el.name}, </span>
-                <span class="time">{el.time}</span>
+              <li key={el.ID} className="task">
+                <span className="id">{el.ID}, </span>
+                <span className="name">{el.name}, </span>
+                <span className="time">{el.time}</span>
               </li>
             );
           })}
