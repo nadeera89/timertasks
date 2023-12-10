@@ -3,22 +3,24 @@ import { useSelector } from "react-redux";
 const TasksList = () => {
   const state = useSelector((state) => state.tasks);
 
-  let taskGroup = state?.reduce((allTasks, task) => {
-    const taskIndex = allTasks?.findIndex((el) => {
-      return el.name === task.name;
-    });
+  let taskGroup = state
+    ?.reduce((allTasks, task) => {
+      const taskIndex = allTasks?.findIndex((el) => {
+        return el.name === task.name;
+      });
 
-    if (taskIndex === -1) {
-      return [...allTasks, task];
-    }
+      if (taskIndex === -1) {
+        return [...allTasks, task];
+      }
 
-    allTasks[taskIndex] = {
-      ...allTasks[taskIndex],
-      time: allTasks[taskIndex].time + task.time,
-    };
+      allTasks[taskIndex] = {
+        ...allTasks[taskIndex],
+        time: allTasks[taskIndex].time + task.time,
+      };
 
-    return allTasks;
-  }, []);
+      return allTasks;
+    }, [])
+    ?.sort((a, b) => b.ID - a.ID);
 
   const totalTime =
     taskGroup?.reduce((accumulator, currentValue) => {
@@ -35,7 +37,7 @@ const TasksList = () => {
         style={{ listStyle: "none", paddingLeft: "0", marginTop: "0" }}
       >
         {taskGroup &&
-          taskGroup.reverse().map((el) => {
+          taskGroup.map((el) => {
             return (
               <li key={el.ID} className="task">
                 <span className="id">{el.ID}, </span>
