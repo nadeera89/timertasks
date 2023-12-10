@@ -26,11 +26,14 @@ const TasksList = () => {
     }, 0) || 0;
 
   return (
-    <div>
-      <ul style={{ listStyle: "none", paddingLeft: "0" }}>
-        <li>
-          <span>{`Task ID, Task Name, Task Elapsed Time (number only)`}</span>
-        </li>
+    <div style={{ marginTop: "1rem" }}>
+      {taskGroup.length > 0 && (
+        <span>{`Task ID, Task Name, Task Elapsed Time (number only)`}</span>
+      )}
+      <ul
+        id="tasks"
+        style={{ listStyle: "none", paddingLeft: "0", marginTop: "0" }}
+      >
         {taskGroup &&
           taskGroup.reverse().map((el) => {
             return (
